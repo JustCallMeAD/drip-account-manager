@@ -11,12 +11,15 @@ const Modal = ({ visible = false, onClose, title, children, className }) => {
     }, [visible])
 
     return (
-        <div className={cn('items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-600 bg-opacity-70 z-50', {
-            'flex': isModalVisible,
-            'hidden': !isModalVisible,
-            ...className
-        })}>
-            <div className="bg-white rounded w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 mx-2">
+        <div 
+            onClick={onClose || hideModal}
+            className={cn('items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-600 bg-opacity-70 z-50', {
+                'flex': isModalVisible,
+                'hidden': !isModalVisible,
+                ...className
+            })}
+        >
+            <div className="bg-white rounded w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 mx-2 z-50" onClick={e => e.stopPropagation()}>
                 <div className="flex flex-col items-start px-8 py-5 w-full">
                     <div className="flex items-center w-full">
                         <div className="text-gray-900 font-medium text-lg">{title}</div>

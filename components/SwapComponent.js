@@ -69,8 +69,16 @@ export const SwapComponent = (props) => {
                 console.log('swap transaction mined!');
             }
         }
+
+        closeModal();
         setToggleRollButton(false);
     }
+
+    const closeModal = () => {
+        setTokenSold('');
+        setSlippage(3);
+        setIsModalVisible(false);
+    };
 
     return (
         <>
@@ -83,11 +91,7 @@ export const SwapComponent = (props) => {
             </Button>
             <Modal
                 visible={isModalVisible}
-                onClose={() => {
-                    setTokenSold('');
-                    setSlippage(3);
-                    setIsModalVisible(false);
-                }}
+                onClose={closeModal}
                 title="Swap"
             >
                 <div className="flex flex-col w-full pt-3 text-black space-y-5">
@@ -121,7 +125,7 @@ export const SwapComponent = (props) => {
                                 Slippage Tolerance: {slippage}%
                             </label>
                             <div className="w-full pt-2">
-                                <div className="grid grid-cols-6 xl:grid-cols-12 gap-2 w-full">
+                                <div className="space-x-2 w-full">
                                     <div className="inline-block radio">
                                         <Input
                                             {...bindSlippage}
